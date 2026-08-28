@@ -6,7 +6,7 @@ import time
 import httpx
 import numpy as np
 from fastapi import FastAPI, HTTPException, Response
-from model import get_default_model_name, load_model
+from models import get_default_model_name, load_model
 from PIL import Image
 from schemas import (
     BatchPredictRequest,
