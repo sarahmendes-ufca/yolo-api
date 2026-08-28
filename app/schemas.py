@@ -1,15 +1,15 @@
 from pydantic import BaseModel, Field
-from typing import list, Optional
+from typing import list
 
 
 
 
 class PredictRequest(BaseModel):
-    image_base64: Optional[str] = Field(
+    image_base64: str | None = Field(
         None,
         description="Imagem PNG/JPG codificada em base64"
     )
-    image_url: Optional[str] = Field(
+    image_url: str | None = Field(
         None,
         description="URL pública acessível a partir do container"
     )
