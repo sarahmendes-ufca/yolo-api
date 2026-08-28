@@ -4,9 +4,9 @@ import json
 import time
 
 
+from fastapi import FastAPI, HTTPException, Response
 import httpx
 import numpy as np
-from fastapi import FastAPI, HTTPException, Response
 from PIL import Image
 
 
@@ -20,6 +20,8 @@ from schemas import (
     PredictRequest,
     PredictResponse,
 )
+
+
 
 
 app = FastAPI(
