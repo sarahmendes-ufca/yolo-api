@@ -1,27 +1,27 @@
 import base64
 import io
-import time
-from pathlib import Path
 import json
-from model import load_model, get_default_model_name
+import time
 
 
-
-
+import httpx
+import numpy as np
 from fastapi import FastAPI, HTTPException, Response
 from PIL import Image
-import numpy as np
-import httpx
 
 
+from model import get_default_model_name, load_model
 from schemas import (
-    PredictRequest,
-    PredictResponse,
     BatchPredictRequest,
     BatchPredictResponse,
+    Detection,
     HealthResponse,
     MetricsResponse,
-    Detection)
+    PredictRequest,
+    PredictResponse,
+)
+
+
 
 
 
@@ -205,7 +205,7 @@ def predict_image(request: PredictRequest):
          "event": "inference_complete",
          "model": request.model_name,
          "latency_ms": round(elapsed_ms, 2),
-         "detections": len(results),
+         "detections": sum(len(result.boxes) for result in results),
      }))
         _metrics["success"] += 1
         _metrics["total_ms"] += elapsed_ms
