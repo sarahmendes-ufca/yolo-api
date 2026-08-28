@@ -8,7 +8,7 @@ import numpy as np
 from fastapi import FastAPI, HTTPException, Response
 from PIL import Image
 
-from app.models import get_default_model_name, load_model
+from app.model import get_default_model_name, load_model
 from app.schemas import (
     BatchPredictRequest,
     BatchPredictResponse,
