@@ -22,10 +22,6 @@ from schemas import (
 )
 
 
-
-
-
-
 app = FastAPI(
     title="YOLO Inference API",
     description="API REST para inferência com YOLOv8 no Raspberry Pi 5",
@@ -133,7 +129,7 @@ async def health_check():
     try:
         load_model(model_name)
         loaded = True
-    except Exception:
+    except (FileNotFoundError, ValueError):
         loaded = False
 
 
@@ -171,7 +167,7 @@ def predict(request: PredictRequest):
         raise
     except FileNotFoundError as e:
         raise HTTPException(status_code=404, detail=str(e))
-    except Exception as e:
+    except ValueError as e:
         raise HTTPException(status_code=500, detail=str(e))
 
 
@@ -231,7 +227,7 @@ def predict_image(request: PredictRequest):
         raise
     except FileNotFoundError as e:
         raise HTTPException(status_code=404, detail=str(e))
-    except Exception as e:
+    except ValueError as e:
         raise HTTPException(status_code=500, detail=str(e))
 
 
