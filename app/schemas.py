@@ -1,5 +1,7 @@
 from pydantic import BaseModel, Field
-from typing import List, Optional
+from typing import list, Optional
+
+
 
 
 class PredictRequest(BaseModel):
@@ -23,35 +25,47 @@ class PredictRequest(BaseModel):
     )
 
 
+
+
 class Detection(BaseModel):
     label: str
     confidence: float
-    bbox: List[float]  # [x1, y1, x2, y2] em pixels
+    bbox: list[float]  # [x1, y1, x2, y2] em pixels
+
+
 
 
 class PredictResponse(BaseModel):
-    detections: List[Detection]
+    detections: list[Detection]
     inference_ms: float
     model_used: str
     image_width: int
     image_height: int
 
 
+
+
 class BatchPredictRequest(BaseModel):
-    images_base64: List[str]
+    images_base64: list[str]
     confidence: float = 0.25
     model_name: str = "yolov8n.pt"
 
 
+
+
 class BatchPredictResponse(BaseModel):
-    results: List[PredictResponse]
+    results: list[PredictResponse]
     total_inference_ms: float
+
+
 
 
 class HealthResponse(BaseModel):
     status: str
     model_loaded: bool
     model_name: str
+
+
 
 
 class MetricsResponse(BaseModel):
