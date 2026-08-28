@@ -1,8 +1,6 @@
 from pydantic import BaseModel, Field
 
 
-
-
 class PredictRequest(BaseModel):
     image_base64: str | None = Field(
         None,

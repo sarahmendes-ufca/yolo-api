@@ -3,12 +3,10 @@ import io
 import json
 import time
 
-
-from fastapi import FastAPI, HTTPException, Response
 import httpx
 import numpy as np
+from fastapi import FastAPI, HTTPException, Response
 from PIL import Image
-
 
 from model import get_default_model_name, load_model
 from schemas import (
@@ -20,9 +18,6 @@ from schemas import (
     PredictRequest,
     PredictResponse,
 )
-
-
-
 
 app = FastAPI(
     title="YOLO Inference API",
