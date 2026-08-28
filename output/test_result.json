@@ -21,7 +21,7 @@
       ]
     }
   ],
-  "inference_ms": 160.43,
+  "inference_ms": 2919.79,
   "model_used": "yolov8n.pt",
   "image_width": 1280,
   "image_height": 720

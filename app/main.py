@@ -2,6 +2,7 @@ import base64
 import io
 import time
 from pathlib import Path
+import json
 
 from fastapi import FastAPI, HTTPException, Response
 from PIL import Image
@@ -162,7 +163,15 @@ def predict_image(request: PredictRequest):
             verbose=False
         )
         elapsed_ms = (time.perf_counter() - t0) * 1000
-
+        print(json.dumps({
+         "timestamp": time.strftime("%Y-%m-%dT%H:%M:%SZ"),
+         "level": "INFO",
+         "event": "inference_complete",
+         "model": model_name,
+         "latency_ms": round(elapsed_ms, 2),
+         "detections": len(results),
+     }))
+        detections = []
         _metrics["success"] += 1
         _metrics["total_ms"] += elapsed_ms
 
