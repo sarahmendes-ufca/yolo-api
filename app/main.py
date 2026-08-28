@@ -7,7 +7,7 @@ import httpx
 import numpy as np
 from fastapi import FastAPI, HTTPException, Response
 from PIL import Image
-from schemas import (
+from app.schemas import (
     BatchPredictRequest,
     BatchPredictResponse,
     Detection,
@@ -17,7 +17,7 @@ from schemas import (
     PredictResponse,
 )
 
-from models import get_default_model_name, load_model
+from app.models import get_default_model_name, load_model
 
 app = FastAPI(
     title="YOLO Inference API",
